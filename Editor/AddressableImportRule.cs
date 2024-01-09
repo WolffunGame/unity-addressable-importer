@@ -37,8 +37,13 @@ public enum GroupTemplateApplicationMode
     ApplyOnGroupCreationOnly,
     AlwaysOverwriteGroupSettings
 }
-
-
+public enum GroupBundleTag
+{
+    None,
+    Ingame,
+    Feature,
+    BattleEnd
+}
 
 [System.Serializable]
 public class AddressableImportRule
@@ -57,14 +62,12 @@ public class AddressableImportRule
     /// </summary>
     [Tooltip("The path parsing method.")]
     public AddressableImportRuleMatchType matchType;
-
     /// <summary>
     /// The group the asset will be added.
     /// </summary>
     [Tooltip("The group name in which the Addressable will be added. Leave blank for the default group.")]
     [Space]
     public string groupName = string.Empty;
-
     /// <summary>
     /// Group template to use. Default Group settings will be used if empty.
     /// </summary>
@@ -106,7 +109,9 @@ public class AddressableImportRule
     [Tooltip("Replacement address string for regex matches.")]
     [ConditionalField("matchType", AddressableImportRuleMatchType.Regex, "simplified", false)]
     public string addressReplacement = string.Empty;
+    public GroupBundleTag groupBundleTag;
 
+    public int levelBundle;
     #endregion
 
 
